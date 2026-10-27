@@ -1,5 +1,7 @@
+const path = require('path');
 const {
   ActionRowBuilder,
+  AttachmentBuilder,
   ButtonBuilder,
   ButtonStyle,
   ContainerBuilder,
@@ -20,30 +22,32 @@ const divider = () =>
 
 const text = (content) => new TextDisplayBuilder().setContent(content);
 
+const DASHBOARD_BANNER_FILE = 'dashboard-banner.png';
+const DASHBOARD_BANNER_PATH = path.join(__dirname, '..', '..', 'assets', DASHBOARD_BANNER_FILE);
+
 function dashboardPanel() {
   const buttons = new ActionRowBuilder().addComponents(
     new ButtonBuilder().setCustomId('panel_assistance').setLabel('Assistance').setStyle(ButtonStyle.Secondary),
-    new ButtonBuilder().setLabel('Order Now').setStyle(ButtonStyle.Link).setURL(brand.orderUrl),
-    new ButtonBuilder().setLabel('Website').setStyle(ButtonStyle.Link).setURL(brand.websiteUrl),
-    new ButtonBuilder().setCustomId('panel_apply').setLabel('Apply').setStyle(ButtonStyle.Secondary),
   );
 
   const container = new ContainerBuilder()
     .setAccentColor(brand.color)
-    .addMediaGalleryComponents(gallery(brand.dashboardBanner))
+    .addMediaGalleryComponents(gallery(`attachment://${DASHBOARD_BANNER_FILE}`))
     .addSeparatorComponents(divider())
     .addTextDisplayComponents(
       text('# Dashboard'),
       text(
         `Welcome to ${brand.name}, where you can find the **highest** quality designs and affordable graphics. ` +
-          'View the buttons below to explore the server.',
+          'Need a hand? Use the button below.',
       ),
     )
-    .addActionRowComponents(buttons)
-    .addSeparatorComponents(divider())
-    .addMediaGalleryComponents(gallery(brand.dashboardFooter));
+    .addActionRowComponents(buttons);
 
-  return { components: [container], flags: MessageFlags.IsComponentsV2 };
+  return {
+    components: [container],
+    files: [new AttachmentBuilder(DASHBOARD_BANNER_PATH, { name: DASHBOARD_BANNER_FILE })],
+    flags: MessageFlags.IsComponentsV2,
+  };
 }
 
 function servicesPanel() {
