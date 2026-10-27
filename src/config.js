@@ -9,9 +9,20 @@ module.exports = {
   adminRoleId: '1564302286807900262',
   staffRoleId: '1564302385117921371',
 
+  // Channels / categories (leave empty to disable that feature)
+  ticketCategoryId: '', // category where ticket channels are created
+  ticketLogChannelId: '', // transcripts are posted here
+  modLogChannelId: '', // moderation actions are logged here
+  welcomeChannelId: '', // welcome cards are posted here
+  ticketInactiveHours: 36,
+
+  // Rotating status. {number} is replaced with the member count.
+  statusMessages: ['hi poopy', 'we have {number} members btw'],
+  statusIntervalSeconds: 20,
+
   // Panel branding - replace with your own image URLs and links
   brand: {
-    name: "Site's Graphics",
+    name: 'Pharaon',
     color: 0x5865f2,
     dashboardBanner: 'https://example.com/dashboard-banner.png',
     dashboardFooter: 'https://example.com/dashboard-footer.png',

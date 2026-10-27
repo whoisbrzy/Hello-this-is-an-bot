@@ -40,6 +40,11 @@ if (fs.existsSync(btnDir)) {
   }
 }
 
+// Automations (welcome card, rotating status, ticket auto-close)
+require('./automation/welcome')(client);
+require('./automation/status')(client);
+require('./automation/tickets')(client);
+
 client.once('clientReady', () => {
   console.log(`Logged in as ${client.user.tag}`);
 });
