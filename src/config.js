@@ -13,8 +13,15 @@ module.exports = {
   ticketCategoryId: '', // category where ticket channels are created
   ticketLogChannelId: '', // transcripts are posted here
   modLogChannelId: '', // moderation actions are logged here
-  welcomeChannelId: '', // welcome cards are posted here
+  welcomeChannelId: '1564305038078124074', // welcome cards are posted here
   ticketInactiveHours: 36,
+
+  // Dock (docksys.xyz) Discord <-> Roblox verification
+  dock: {
+    apiKey: process.env.DOCK_API_KEY,
+    pid: process.env.DOCK_PID,
+    baseUrl: 'https://api.docksys.xyz/v2',
+  },
 
   // Rotating status. {number} is replaced with the member count.
   statusMessages: ['hi poopy', 'we have {number} members btw'],
@@ -22,7 +29,7 @@ module.exports = {
 
   // Panel branding - replace with your own image URLs and links
   brand: {
-    name: 'Pharaon',
+    name: 'Pharaon Studio',
     color: 0x5865f2,
     dashboardBanner: 'https://example.com/dashboard-banner.png',
     dashboardFooter: 'https://example.com/dashboard-footer.png',
